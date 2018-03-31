@@ -1,6 +1,6 @@
 VER=$(shell grep Version control | cut -c 10-)
-DOCKER_IMAGE=wpilib/frc-openjdk:${VER}
-IPK_NAME=frc-openjdk-10-jre_${VER}_cortexa9-vfpv3.ipk
+DOCKER_IMAGE=wpilib/frc-openjdk:2018-${VER}
+IPK_NAME=frc2018-openjdk-10-jre_${VER}_cortexa9-vfpv3.ipk
 
 .PHONY: all clean ipk
 
@@ -15,30 +15,30 @@ clean:
 	rm -f data.tar.gz
 	rm -f debian-binary
 	rm -f ${IPK_NAME}
-	rm -f jre.tar.gz
+	rm -f jre_${VER}.tar.gz
 	rm -rf jre
 
-jre.tar.gz:
+jre_${VER}.tar.gz:
 	docker run -v ${PWD}:/artifacts ${DOCKER_IMAGE} bash -c "\
 		bash configure \
 			--openjdk-target=arm-frc-linux-gnueabi \
 			--with-abi-profile=arm-vfp-sflt \
 			--with-jvm-variants=minimal1 \
+			--with-jvm-features=all-gcs,jvmti,services,vm-structs \
 			--with-native-debug-symbols=zipped \
 			--enable-unlimited-crypto \
 			--with-sysroot=/usr/arm-frc-linux-gnueabi \
 			--with-version-pre=frc \
-			--with-version-opt= \
-		&& cd build/linux-arm-normal-minimal1-release \
+			--with-version-opt=2018-${VER} \
 		&& make all \
-		&& cd images \
-		&& tar czf jre.tar.gz jre \
-		&& chown -R $(shell id -u):$(shell id -u) jre.tar.gz \
-		&& cp -a jre.tar.gz /artifacts"
+		&& cd build/linux-arm-normal-minimal1-release/images \
+		&& tar czf jre_${VER}.tar.gz jre \
+		&& chown -R $(shell id -u):$(shell id -u) jre_${VER}.tar.gz \
+		&& cp -a jre_${VER}.tar.gz /artifacts"
 
 
-${IPK_NAME}: jre.tar.gz
-	tar xzf jre.tar.gz
+${IPK_NAME}: jre_${VER}.tar.gz
+	tar xzf jre_${VER}.tar.gz
 	find jre -name \*.so -type f | xargs strip
 	strip jre/bin/* jre/lib/jexec
 	tar czf data.tar.gz \

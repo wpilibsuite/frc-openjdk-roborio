@@ -1,6 +1,6 @@
 diff -r 5ab7a67bc155 src/share/vm/gc/shared/space.inline.hpp
---- a/hotspot/src/share/vm/gc/shared/space.inline.hpp	Fri Sep 08 18:24:18 2017 +0000
-+++ b/hotspot/src/share/vm/gc/shared/space.inline.hpp	Fri Mar 30 01:05:28 2018 -0700
+--- a/src/hotspot/share/gc/shared/space.inline.hpp	Fri Sep 08 18:24:18 2017 +0000
++++ b/src/hotspot/share/gc/shared/space.inline.hpp	Fri Mar 30 01:05:28 2018 -0700
 @@ -26,6 +26,7 @@
  #define SHARE_VM_GC_SHARED_SPACE_INLINE_HPP
  

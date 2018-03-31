@@ -1,0 +1,9 @@
+diff -r be620a591379 src/hotspot/share/gc/g1/g1OopClosures.hpp
+--- a/src/hotspot/share/gc/g1/g1OopClosures.hpp	Mon Oct 30 21:23:10 2017 +0100
++++ b/src/hotspot/share/gc/g1/g1OopClosures.hpp	Sat Mar 31 15:27:29 2018 -0700
+@@ -207,4 +207,5 @@
+   virtual void do_oop(oop* p)       { do_oop_nv(p); }
+ };
+ 
++#include "gc/g1/g1OopClosures.inline.hpp"
+ #endif // SHARE_VM_GC_G1_G1OOPCLOSURES_HPP
