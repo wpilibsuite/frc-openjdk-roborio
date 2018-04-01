@@ -1,5 +1,5 @@
 Package: frc2018-openjdk-10-jre
-Version: 10.0-1
+Version: 10u46-1
 Description: FRC OpenJDK Java Runtime Environment
 Section: devel
 Priority: optional

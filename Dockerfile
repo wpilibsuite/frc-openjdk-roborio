@@ -42,15 +42,7 @@ RUN for f in /tmp/*.ipk; do \
 
 WORKDIR /build
 
-RUN hg clone http://hg.openjdk.java.net/jdk10/master jdk10
+RUN hg clone http://hg.openjdk.java.net/jdk-updates/jdk10u jdk10u
 
-WORKDIR jdk10
-
-ADD space.inline.hpp.patch .
-
-RUN patch -p1 < space.inline.hpp.patch
-
-ADD g1OopClosures.hpp.patch .
-
-RUN patch -p1 < g1OopClosures.hpp.patch
+WORKDIR jdk10u
 
