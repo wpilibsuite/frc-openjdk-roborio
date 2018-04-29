@@ -48,7 +48,7 @@ jre_${VER}.tar.gz:
 			--with-sysroot=/usr/arm-frc${YEAR}-linux-gnueabi \
 			--with-version-pre=frc \
 			--with-version-patch=${JAVA_PATCH} \
-			--with-version-opt=2018-${VER} \
+			--with-version-opt=${YEAR}-${VER} \
 			--disable-warnings-as-errors \
 		&& make all \
 		&& cd build/linux-arm-normal-${JVM_VARIANT}-release/images \

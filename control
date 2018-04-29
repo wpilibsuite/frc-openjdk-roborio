@@ -1,4 +1,4 @@
-Package: frc2018-openjdk-10-jre
+Package: frc2019-openjdk-10-jre
 Version: 10.0.1u10-1
 Description: FRC OpenJDK Java Runtime Environment
 Section: devel
@@ -6,5 +6,5 @@ Priority: optional
 Maintainer: WPILib Developers <wpilib@wpi.edu>
 License: GPL
 Architecture: cortexa9-vfpv3
-OE: frc2018-openjdk-10-jre
+OE: frc2019-openjdk-10-jre
 Homepage: http://openjdk.java.net/
