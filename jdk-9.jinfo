@@ -1,0 +1,47 @@
+name=jdk-9.0.4
+priority=900
+section=main
+
+hl rmid /usr/lib/jvm/jdk-9.0.4/bin/rmid
+hl java /usr/lib/jvm/jdk-9.0.4/bin/java
+hl javah /usr/lib/jvm/jdk-9.0.4/bin/javah
+hl keytool /usr/lib/jvm/jdk-9.0.4/bin/keytool
+hl jjs /usr/lib/jvm/jdk-9.0.4/bin/jjs
+hl pack200 /usr/lib/jvm/jdk-9.0.4/bin/pack200
+hl rmiregistry /usr/lib/jvm/jdk-9.0.4/bin/rmiregistry
+hl unpack200 /usr/lib/jvm/jdk-9.0.4/bin/unpack200
+hl orbd /usr/lib/jvm/jdk-9.0.4/bin/orbd
+hl servertool /usr/lib/jvm/jdk-9.0.4/bin/servertool
+hl tnameserv /usr/lib/jvm/jdk-9.0.4/bin/tnameserv
+hl jexec /usr/lib/jvm/jdk-9.0.4/lib/jexec
+jdkhl jlink /usr/lib/jvm/jdk-9.0.4/bin/jlink
+jdkhl jdeps /usr/lib/jvm/jdk-9.0.4/bin/jdeps
+jdkhl wsimport /usr/lib/jvm/jdk-9.0.4/bin/wsimport
+jdkhl jinfo /usr/lib/jvm/jdk-9.0.4/bin/jinfo
+jdkhl jstat /usr/lib/jvm/jdk-9.0.4/bin/jstat
+jdkhl javadoc /usr/lib/jvm/jdk-9.0.4/bin/javadoc
+jdkhl jmod /usr/lib/jvm/jdk-9.0.4/bin/jmod
+jdkhl idlj /usr/lib/jvm/jdk-9.0.4/bin/idlj
+jdkhl jhsdb /usr/lib/jvm/jdk-9.0.4/bin/jhsdb
+jdkhl jps /usr/lib/jvm/jdk-9.0.4/bin/jps
+jdkhl jstack /usr/lib/jvm/jdk-9.0.4/bin/jstack
+jdkhl jrunscript /usr/lib/jvm/jdk-9.0.4/bin/jrunscript
+jdkhl javac /usr/lib/jvm/jdk-9.0.4/bin/javac
+jdkhl javap /usr/lib/jvm/jdk-9.0.4/bin/javap
+jdkhl jar /usr/lib/jvm/jdk-9.0.4/bin/jar
+jdkhl jaotc /usr/lib/jvm/jdk-9.0.4/bin/jaotc
+jdkhl schemagen /usr/lib/jvm/jdk-9.0.4/bin/schemagen
+jdkhl jshell /usr/lib/jvm/jdk-9.0.4/bin/jshell
+jdkhl xjc /usr/lib/jvm/jdk-9.0.4/bin/xjc
+jdkhl rmic /usr/lib/jvm/jdk-9.0.4/bin/rmic
+jdkhl jdeprscan /usr/lib/jvm/jdk-9.0.4/bin/jdeprscan
+jdkhl jimage /usr/lib/jvm/jdk-9.0.4/bin/jimage
+jdkhl jstatd /usr/lib/jvm/jdk-9.0.4/bin/jstatd
+jdkhl jmap /usr/lib/jvm/jdk-9.0.4/bin/jmap
+jdkhl jdb /usr/lib/jvm/jdk-9.0.4/bin/jdb
+jdkhl serialver /usr/lib/jvm/jdk-9.0.4/bin/serialver
+jdkhl wsgen /usr/lib/jvm/jdk-9.0.4/bin/wsgen
+jdkhl jcmd /usr/lib/jvm/jdk-9.0.4/bin/jcmd
+jdkhl jarsigner /usr/lib/jvm/jdk-9.0.4/bin/jarsigner
+jdk appletviewer /usr/lib/jvm/jdk-9.0.4/bin/appletviewer
+jdk jconsole /usr/lib/jvm/jdk-9.0.4/bin/jconsole

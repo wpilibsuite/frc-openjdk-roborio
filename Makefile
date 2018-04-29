@@ -7,7 +7,7 @@ JAVA_UPDATE=$(shell grep Version control | cut -c 10- | cut -du -f 2 | cut -d- -
 # The year, e.g. "2018"
 YEAR=$(shell grep Package control | cut -c 13-16)
 DOCKER_IMAGE=wpilib/frc-openjdk:${YEAR}-${JAVA_MAJOR}u
-IPK_NAME=frc2018-openjdk-10-jre_${VER}_cortexa9-vfpv3.ipk
+IPK_NAME=frc${YEAR}-openjdk-10-jre_${VER}_cortexa9-vfpv3.ipk
 
 JVM_VARIANT=client
 JVM_FEATURES=
@@ -37,13 +37,13 @@ jre_${VER}.tar.gz:
 		&& patch -p1 < /artifacts/space.inline.hpp.patch \
 		&& patch -p1 < /artifacts/g1OopClosures.hpp.patch \
 		&& bash configure \
-			--openjdk-target=arm-frc-linux-gnueabi \
+			--openjdk-target=arm-frc${YEAR}-linux-gnueabi \
 			--with-abi-profile=arm-vfp-sflt \
 			--with-jvm-variants=${JVM_VARIANT} \
 			--with-jvm-features=${JVM_FEATURES} \
 			--with-native-debug-symbols=zipped \
 			--enable-unlimited-crypto \
-			--with-sysroot=/usr/arm-frc-linux-gnueabi \
+			--with-sysroot=/usr/arm-frc${YEAR}-linux-gnueabi \
 			--with-version-pre=frc \
 			--with-version-update=${JAVA_UPDATE} \
 			--with-version-opt=2018-${VER} \

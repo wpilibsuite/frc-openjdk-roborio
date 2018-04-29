@@ -1,31 +1,50 @@
-FROM ubuntu:17.10
+FROM ubuntu:18.04
 
-RUN apt-get update && apt-get install -y software-properties-common \
-  && apt-add-repository -y ppa:wpilib/toolchain \
-  && apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y tzdata && apt-get install -y \
     build-essential \
+    ca-certificates \
+    cmake \
+    curl \
+    file \
     g++ --no-install-recommends \
     gcc \
+    gdb \
+    java-common \
     libc6-dev \
-    make \
-    openjdk-9-jdk-headless \
-    frc-toolchain \
     libcups2-dev \
     libfontconfig1-dev \
     libfreetype6-dev \
+    libisl15 \
+    libpython2.7 \
     libx11-dev \
     libxext-dev \
     libxrender-dev \
     libxtst-dev \
     libxt-dev \
+    make \
     mercurial \
     unzip \
+    wget \
     zip \
   && rm -rf /var/lib/apt/lists/*
 
-ADD arm-x11-files.tar.xz /usr/arm-frc-linux-gnueabi/
+# Install toolchain
+COPY --from=wpilib/roborio-toolchain:2018-future-18.04 /packages/*.deb /packages/
+RUN dpkg -i /packages/*.deb && rm -rf /packages
 
-ADD http://download.ni.com/ni-linux-rt/feeds/2017/arm/ipk/cortexa9-vfpv3/alsa-lib-dev_1.1.0-r0.5_cortexa9-vfpv3.ipk \
+# Install OpenJDK 9 (required to build OpenJDK 10)
+WORKDIR /usr/lib/jvm
+RUN curl -SL https://download.java.net/java/GA/jdk9/9.0.4/binaries/openjdk-9.0.4_linux-x64_bin.tar.gz | tar xzf -
+COPY jdk-9.jinfo .jdk-9.0.4.jinfo
+RUN bash -c "grep /usr/lib/jvm .jdk-9.0.4.jinfo | awk '{ print \"update-alternatives --install /usr/bin/\" \$2 \" \" \$2 \" \" \$3 \" 2\"; }' | bash " \
+  && update-java-alternatives -s jdk-9.0.4
+
+# Add ARM files for x11 (not RoboRIO, but doesn't have to be)
+ADD arm-x11-files.tar.xz /usr/arm-frc2018-linux-gnueabi/
+
+WORKDIR /tmp
+
+RUN wget http://download.ni.com/ni-linux-rt/feeds/2017/arm/ipk/cortexa9-vfpv3/alsa-lib-dev_1.1.0-r0.5_cortexa9-vfpv3.ipk \
     http://download.ni.com/ni-linux-rt/feeds/2017/arm/ipk/cortexa9-vfpv3/alsa-lib_1.1.0-r0.5_cortexa9-vfpv3.ipk \
     http://download.ni.com/ni-linux-rt/feeds/2017/arm/ipk/cortexa9-vfpv3/cups-dev_2.1.3-r0.5_cortexa9-vfpv3.ipk \
     http://download.ni.com/ni-linux-rt/feeds/2017/arm/ipk/cortexa9-vfpv3/libasound2_1.1.0-r0.5_cortexa9-vfpv3.ipk \
@@ -34,11 +53,10 @@ ADD http://download.ni.com/ni-linux-rt/feeds/2017/arm/ipk/cortexa9-vfpv3/alsa-li
     http://download.ni.com/ni-linux-rt/feeds/2017/arm/ipk/cortexa9-vfpv3/libfreetype-dev_2.6.3-r0.36_cortexa9-vfpv3.ipk \
     http://download.ni.com/ni-linux-rt/feeds/2017/arm/ipk/cortexa9-vfpv3/libfreetype6_2.6.3-r0.36_cortexa9-vfpv3.ipk \
     http://download.ni.com/ni-linux-rt/feeds/2017/arm/ipk/cortexa9-vfpv3/libz1_1.2.8-r0.329_cortexa9-vfpv3.ipk \
-    /tmp/
-
-RUN for f in /tmp/*.ipk; do \
-    ar p $f data.tar.gz | sh -c 'cd /usr/arm-frc-linux-gnueabi && tar xzf -'; \
-  done
+  && for f in *.ipk; do \
+    ar p $f data.tar.gz | sh -c 'cd /usr/arm-frc2018-linux-gnueabi && tar xzf -'; \
+  done \
+  && rm *.ipk
 
 WORKDIR /build
 
