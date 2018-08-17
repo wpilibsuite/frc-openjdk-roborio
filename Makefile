@@ -33,7 +33,7 @@ clean:
 	rm -rf jre
 
 jre_${VER}.tar.gz:
-	docker run -v --rm ${PWD}:/artifacts ${DOCKER_IMAGE} bash -c "\
+	docker run --rm -v ${PWD}:/artifacts ${DOCKER_IMAGE} bash -c "\
 		hg pull \
 		&& hg up jdk-${JAVA_MAJOR}+${JAVA_PATCH} \
 		&& patch -p1 < /artifacts/g1OopClosures.hpp.patch \
