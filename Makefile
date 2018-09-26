@@ -1,14 +1,14 @@
-# The full version, e.g. "10u46-1"
+# The full version, e.g. "11u28-1"
 VER=$(shell grep Version control | cut -c 10-)
 # The Java major version only, e.g. "11"
 JAVA_MAJOR=$(shell grep Version control | cut -c 10-11)
 # The Java major+minor version, e.g. "11.0.0"
 JAVA_MAJORMINOR=$(shell grep Version control | cut -c 10- | cut -du -f 1)
-# The Java patch, e.g. "26" for "11u26"
+# The Java patch, e.g. "28" for "11u28"
 JAVA_PATCH=$(shell grep Version control | cut -c 10- | cut -du -f 2 | cut -d- -f 1)
 # The year, e.g. "2019"
 YEAR=$(shell grep Package control | cut -c 13-16)
-DOCKER_IMAGE=wpilib/frc-openjdk:${YEAR}-${JAVA_MAJOR}
+DOCKER_IMAGE=wpilib/frc-openjdk:${YEAR}-${JAVA_MAJOR}u
 IPK_NAME=frc${YEAR}-openjdk-11-jre_${VER}_cortexa9-vfpv3.ipk
 
 JVM_VARIANT=client

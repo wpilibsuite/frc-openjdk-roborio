@@ -31,7 +31,7 @@ RUN apt-get update && apt-get install -y tzdata && apt-get install -y \
 
 WORKDIR /build
 
-RUN hg clone http://hg.openjdk.java.net/jdk/jdk11 jdk11
+RUN hg clone http://hg.openjdk.java.net/jdk-updates/jdk11u jdk11u
 
 # Install toolchain
 COPY --from=wpilib/roborio-toolchain:2019-18.04 /packages/*.deb /packages/
@@ -63,5 +63,5 @@ RUN wget http://download.ni.com/ni-linux-rt/feeds/2018.1/arm/cortexa9-vfpv3/alsa
   done \
   && rm *.ipk
 
-WORKDIR /build/jdk11
+WORKDIR /build/jdk11u
 
