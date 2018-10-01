@@ -5,14 +5,19 @@
 
 pool:
   vmImage: 'Ubuntu 16.04'
+  timeoutInMinutes: 0
 
 steps:
 - script: make
-  displayName: 'Run a one-line script'
+  displayName: 'Build Runtime'
 
 - task: CopyFiles@2
   inputs:
-    contents: '**\*openjdk*.ipk'
+    contents: '*openjdk*.ipk'
+    targetFolder: $(Build.ArtifactStagingDirectory)
+- task: CopyFiles@2
+  inputs:
+    contents: 'jre_*.tar.gz'
     targetFolder: $(Build.ArtifactStagingDirectory)
 - task: PublishBuildArtifacts@1
   inputs:
