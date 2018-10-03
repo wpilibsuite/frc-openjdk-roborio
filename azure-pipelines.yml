@@ -5,8 +5,7 @@
 
 pool:
   vmImage: 'Ubuntu 16.04'
-
-timeoutInMinutes: 360
+  timeoutInMinutes: '300'
 
 steps:
 - script: make
