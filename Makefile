@@ -59,8 +59,8 @@ jre_${VER}.tar.gz:
 ${IPK_NAME}: jre_${VER}.tar.gz
 	rm -rf jre
 	tar xzf jre_${VER}.tar.gz
-	find jre -name \*.so -type f | xargs strip
-	strip jre/bin/* jre/lib/jexec
+	find jre -name \*.so -type f | xargs arm-frc2019-linux-gnueabi-strip
+	arm-frc2019-linux-gnueabi-strip jre/bin/* jre/lib/jexec
 	tar czf data.tar.gz \
 	    --transform "s,^jre,usr/local/frc/JRE," \
 	    --exclude=\*.diz \
