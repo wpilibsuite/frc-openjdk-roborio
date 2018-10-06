@@ -53,14 +53,17 @@ jre_${VER}.tar.gz:
 		&& cd build/linux-arm-normal-${JVM_VARIANT}-release/images \
 		&& tar czf jre_${VER}.tar.gz jre \
 		&& chown -R $(shell id -u):$(shell id -g) jre_${VER}.tar.gz \
-		&& cp -a jre_${VER}.tar.gz /artifacts"
+		&& cp -a jre_${VER}.tar.gz /artifacts \
+		&& find jre -name \*.so -type f | xargs arm-frc2019-linux-gnueabi-strip \
+		&& arm-frc2019-linux-gnueabi-strip jre/bi/* jre/lib/jexec
+		&& tar czf jre_${VER}-strip.tar.gz jre \
+		&& chown -R $(shell id -u):$(shell id -g) jre_${VER}-strip.tar.gz \
+		&& cp -a jre_${VER}-strip.tar.gz /artifacts "
 
 
 ${IPK_NAME}: jre_${VER}.tar.gz
 	rm -rf jre
-	tar xzf jre_${VER}.tar.gz
-	find jre -name \*.so -type f | xargs arm-frc2019-linux-gnueabi-strip
-	arm-frc2019-linux-gnueabi-strip jre/bin/* jre/lib/jexec
+	tar xzf jre_${VER}-strip.tar.gz
 	tar czf data.tar.gz \
 	    --transform "s,^jre,usr/local/frc/JRE," \
 	    --exclude=\*.diz \
