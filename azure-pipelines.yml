@@ -3,22 +3,24 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-pool:
-  vmImage: 'Ubuntu 16.04'
-  timeoutInMinutes: '300'
+jobs:
+  - job: 'Main'
+    pool:
+      vmImage: 'Ubuntu 16.04'
+    timeoutInMinutes: 0
 
-steps:
-- script: make
-  displayName: 'Build Runtime'
+    steps:
+    - script: make
+      displayName: 'Build Runtime'
 
-- task: CopyFiles@2
-  inputs:
-    contents: '*openjdk*.ipk'
-    targetFolder: $(Build.ArtifactStagingDirectory)
-- task: CopyFiles@2
-  inputs:
-    contents: 'jre_*.tar.gz'
-    targetFolder: $(Build.ArtifactStagingDirectory)
-- task: PublishBuildArtifacts@1
-  inputs:
-    artifactName: 'RoboRIOJRE'
+    - task: CopyFiles@2
+      inputs:
+        contents: '*openjdk*.ipk'
+        targetFolder: $(Build.ArtifactStagingDirectory)
+    - task: CopyFiles@2
+      inputs:
+        contents: 'jre_*.tar.gz'
+        targetFolder: $(Build.ArtifactStagingDirectory)
+    - task: PublishBuildArtifacts@1
+      inputs:
+        artifactName: 'RoboRIOJRE'
