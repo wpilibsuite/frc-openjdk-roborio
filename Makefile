@@ -1,3 +1,5 @@
+# The hg revision
+HG_REV=8513ac27b651
 # The full version, e.g. "11u28-1"
 VER=$(shell grep Version control | cut -c 10-)
 # The Java major version only, e.g. "11"
@@ -34,9 +36,10 @@ clean:
 	rm -rf jre
 
 jre_${VER}.tar.gz:
+	wget -nc http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/${HG_REV}.tar.bz2
 	docker run --rm -v ${PWD}:/artifacts ${DOCKER_IMAGE} bash -c "\
-		hg pull \
-		&& hg up jdk-${JAVA_MAJOR}+${JAVA_PATCH} \
+		tar xjf /artifacts/${HG_REV}.tar.bz2 \
+		&& cd jdk11u-${HG_REV} \
 		&& patch -p1 < /artifacts/g1OopClosures.hpp.patch \
 		&& bash configure \
 			--openjdk-target=arm-frc${YEAR}-linux-gnueabi \
@@ -45,7 +48,7 @@ jre_${VER}.tar.gz:
 			--with-jvm-features=${JVM_FEATURES} \
 			--with-native-debug-symbols=zipped \
 			--enable-unlimited-crypto \
-			--with-sysroot=/usr/arm-frc${YEAR}-linux-gnueabi \
+			--with-sysroot=/usr/local/arm-frc${YEAR}-linux-gnueabi \
 			--with-version-pre=frc \
 			--with-version-patch=${JAVA_PATCH} \
 			--with-version-opt=${YEAR}-${VER} \
