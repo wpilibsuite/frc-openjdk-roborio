@@ -1,5 +1,5 @@
 Package: frc2020-openjdk-11-jre
-Version: 11.0.4u10-1
+Version: 11.0.4u10-2
 Description: FRC OpenJDK Java Runtime Environment
 Section: devel
 Priority: optional

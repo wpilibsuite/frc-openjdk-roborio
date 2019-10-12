@@ -41,6 +41,7 @@ jre_${VER}.tar.gz:
 		tar xjf /artifacts/${HG_REV}.tar.bz2 \
 		&& cd jdk11u-${HG_REV} \
 		&& patch -p1 < /artifacts/g1OopClosures.hpp.patch \
+		&& patch -p1 < /artifacts/UseConcMarkSweepGC.patch \
 		&& bash configure \
 			--openjdk-target=arm-frc${YEAR}-linux-gnueabi \
 			--with-abi-profile=arm-vfp-sflt \
