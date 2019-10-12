@@ -40,7 +40,7 @@ RUN bash -c "grep /usr/lib/jvm .jdk-10.0.2.jinfo | awk '{ print \"update-alterna
   && update-java-alternatives -s jdk-10.0.2
 
 # Install toolchain
-RUN curl -SL https://github.com/wpilibsuite/roborio-toolchain/releases/download/v2020-1/FRC-2020-Linux-Toolchain-7.3.0.tar.gz | sh -c 'mkdir -p /usr/local && cd /usr/local && tar xzf - --strip-components=2'
+RUN curl -SL https://github.com/wpilibsuite/roborio-toolchain/releases/download/v2020-2/FRC-2020-Linux-Toolchain-7.3.0.tar.gz | sh -c 'mkdir -p /usr/local && cd /usr/local && tar xzf - --strip-components=2'
 
 # Add ARM files for x11 (not RoboRIO, but doesn't have to be)
 ADD arm-x11-files.tar.xz /usr/local/arm-frc2020-linux-gnueabi/
