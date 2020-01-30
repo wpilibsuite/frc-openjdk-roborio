@@ -1,7 +1,7 @@
 # frc-openjdk
 
 This is a roboRIO ipk package builder for the
-[OpenJDK](http://openjdk.java.net/) JRE.
+[OpenJDK](https://openjdk.java.net/) JRE.
 
 The roboRIO ipk uses the ARM 32bit JRE for ARMv7 soft float ABI.
 
