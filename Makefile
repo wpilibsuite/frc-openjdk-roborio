@@ -36,7 +36,7 @@ clean:
 	rm -rf jre
 
 jre_${VER}.tar.gz:
-	wget -nc http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/${HG_REV}.tar.bz2
+	curl -SLO http://hg.openjdk.java.net/jdk-updates/jdk11u/archive/${HG_REV}.tar.bz2
 	docker run --rm -v ${PWD}:/artifacts ${DOCKER_IMAGE} bash -c "\
 		tar xjf /artifacts/${HG_REV}.tar.bz2 \
 		&& cd jdk11u-${HG_REV} \
