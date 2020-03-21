@@ -7,4 +7,4 @@ Maintainer: WPILib Developers <wpilib@wpi.edu>
 License: GPL
 Architecture: cortexa9-vfpv3
 OE: frc2020-openjdk-11-jre
-Homepage: http://openjdk.java.net/
+Homepage: https://openjdk.java.net/
