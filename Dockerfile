@@ -40,10 +40,10 @@ RUN bash -c "grep /usr/lib/jvm .jdk-10.0.2.jinfo | awk '{ print \"update-alterna
   && update-java-alternatives -s jdk-10.0.2
 
 # Install toolchain
-RUN curl -SL https://github.com/wpilibsuite/roborio-toolchain/releases/download/v2020-2/FRC-2020-Linux-Toolchain-7.3.0.tar.gz | sh -c 'mkdir -p /usr/local && cd /usr/local && tar xzf - --strip-components=2'
+RUN curl -SL https://github.com/wpilibsuite/roborio-toolchain/releases/download/v2021-1/FRC-2021-Linux-Toolchain-7.3.0.tar.gz | sh -c 'mkdir -p /usr/local && cd /usr/local && tar xzf - --strip-components=2'
 
 # Add ARM files for x11 (not RoboRIO, but doesn't have to be)
-ADD arm-x11-files.tar.xz /usr/local/arm-frc2020-linux-gnueabi/
+ADD arm-x11-files.tar.xz /usr/local/arm-frc2021-linux-gnueabi/
 
 WORKDIR /tmp
 
@@ -57,7 +57,7 @@ RUN wget https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/alsa-
     https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libfreetype6_2.9-r0.6_cortexa9-vfpv3.ipk \
     https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libz1_1.2.11-r0.71_cortexa9-vfpv3.ipk \
   && for f in *.ipk; do \
-    ar p $f data.tar.gz | sh -c 'cd /usr/local/arm-frc2020-linux-gnueabi && tar xzf -'; \
+    ar p $f data.tar.gz | sh -c 'cd /usr/local/arm-frc2021-linux-gnueabi && tar xzf -'; \
   done \
   && rm *.ipk
 
