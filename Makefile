@@ -59,6 +59,7 @@ jre_${VER}.tar.gz:
 		&& tar czf jre_${VER}.tar.gz jre \
 		&& chown -R $(shell id -u):$(shell id -g) jre_${VER}.tar.gz \
 		&& cp -a jre_${VER}.tar.gz /artifacts \
+		&& find jre -name \*.diz -delete \
 		&& find jre -name \*.so -type f | xargs arm-frc${YEAR}-linux-gnueabi-strip \
 		&& arm-frc${YEAR}-linux-gnueabi-strip jre/bin/* jre/lib/jexec \
 		&& tar czf jre_${VER}-strip.tar.gz jre \
@@ -71,7 +72,6 @@ ${IPK_NAME}: jre_${VER}.tar.gz
 	tar xzf jre_${VER}-strip.tar.gz
 	tar czf data.tar.gz \
 	    --transform "s,^jre,usr/local/frc/JRE," \
-	    --exclude=\*.diz \
 	    --owner=root \
 	    --group=root \
 	    jre
