@@ -1,6 +1,10 @@
-FROM ubuntu:18.04
+#!/bin/bash
+set -e
+set -o pipefail
 
-RUN apt-get update && apt-get install -y tzdata && apt-get install -y \
+source versions.sh
+
+apt-get update && apt-get install -y \
     autoconf \
     build-essential \
     ca-certificates \
@@ -27,27 +31,21 @@ RUN apt-get update && apt-get install -y tzdata && apt-get install -y \
     mercurial \
     unzip \
     wget \
-    zip \
-  && rm -rf /var/lib/apt/lists/*
+    zip
 
-WORKDIR /build
-
-# Install OpenJDK 10 (required to build OpenJDK 11)
-WORKDIR /usr/lib/jvm
-RUN curl -SL https://download.java.net/java/GA/jdk10/10.0.2/19aef61b38124481863b1413dce1855f/13/openjdk-10.0.2_linux-x64_bin.tar.gz | tar xzf -
-COPY jdk-10.jinfo .jdk-10.0.2.jinfo
-RUN bash -c "grep /usr/lib/jvm .jdk-10.0.2.jinfo | awk '{ print \"update-alternatives --install /usr/bin/\" \$2 \" \" \$2 \" \" \$3 \" 2\"; }' | bash " \
-  && update-java-alternatives -s jdk-10.0.2
-
-# Install toolchain
-RUN curl -SL https://github.com/wpilibsuite/roborio-toolchain/releases/download/v2021-2/FRC-2021-Linux-Toolchain-7.3.0.tar.gz | sh -c 'mkdir -p /usr/local && cd /usr/local && tar xzf - --strip-components=2'
+curl -SL https://download.java.net/java/GA/jdk10/10.0.2/19aef61b38124481863b1413dce1855f/13/openjdk-10.0.2_linux-x64_bin.tar.gz | sh -c 'cd /usr/lib/jvm && tar xzf -'
+cp jdk-10.jinfo /usr/lib/jvm/.jdk-10.0.2.jinfo
+grep /usr/lib/jvm /usr/lib/jvm/.jdk-10.0.2.jinfo \
+    | awk '{ print "update-alternatives --install /usr/bin/" $2 " " $2 " " $3 " 2"; }' \
+    | bash
+update-java-alternatives -s jdk-10.0.2
 
 # Add ARM files for x11 (not RoboRIO, but doesn't have to be)
-ADD arm-x11-files.tar.xz /usr/local/arm-frc2021-linux-gnueabi/
+cat arm-x11-files.tar.xz | sh -c "cd /usr/local/arm-frc${YEAR}-linux-gnueabi && tar xJf -"
 
-WORKDIR /tmp
-
-RUN wget https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/alsa-lib-dev_1.1.5-r0.6_cortexa9-vfpv3.ipk \
+# Add cross libraries
+wget \
+    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/alsa-lib-dev_1.1.5-r0.6_cortexa9-vfpv3.ipk \
     https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/alsa-server_1.1.5-r0.6_cortexa9-vfpv3.ipk \
     https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/cups-dev_2.2.6-r0.14_cortexa9-vfpv3.ipk \
     https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libasound2_1.1.5-r0.6_cortexa9-vfpv3.ipk \
@@ -55,11 +53,9 @@ RUN wget https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/alsa-
     https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libfontconfig1_2.12.6-r0.6_cortexa9-vfpv3.ipk \
     https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libfreetype-dev_2.9-r0.6_cortexa9-vfpv3.ipk \
     https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libfreetype6_2.9-r0.6_cortexa9-vfpv3.ipk \
-    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libz1_1.2.11-r0.71_cortexa9-vfpv3.ipk \
-  && for f in *.ipk; do \
-    ar p $f data.tar.gz | sh -c 'cd /usr/local/arm-frc2021-linux-gnueabi && tar xzf -'; \
-  done \
-  && rm *.ipk
+    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libz1_1.2.11-r0.71_cortexa9-vfpv3.ipk
 
-WORKDIR /build
+for f in *.ipk; do \
+    ar p $f data.tar.gz | sh -c "cd /usr/local/arm-frc${YEAR}-linux-gnueabi && tar xzf -"; \
+done
 
