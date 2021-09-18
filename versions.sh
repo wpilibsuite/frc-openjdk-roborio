@@ -1,5 +1,5 @@
 # The hg revision
-HG_REV=4397fa4529b2
+HG_REV=6aa6f6860508
 # The full version, e.g. "11u28-1"
 VER=`grep Version control | cut -c 10-`
 # The Java major version only, e.g. "11"

@@ -1,5 +1,5 @@
-Package: frc2021-openjdk-11-jre
-Version: 11.0.9u11-1
+Package: frc2022-openjdk-11-jre
+Version: 11.0.9u12-1
 Description: FRC OpenJDK Java Runtime Environment
 Section: devel
 Priority: optional
