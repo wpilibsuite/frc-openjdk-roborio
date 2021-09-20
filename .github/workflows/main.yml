@@ -24,9 +24,7 @@ jobs:
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
-      - name: Release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: "**/*"
+      - name: Create GitHub Release
+        run: gh release create "${GITHUB_REF#refs/tags/}" **/*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
