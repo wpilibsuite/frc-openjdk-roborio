@@ -14,6 +14,7 @@ apt-get update && apt-get install -y \
     g++ --no-install-recommends \
     gcc \
     gdb \
+    git \
     java-common \
     libc6-dev \
     libcups2-dev \
@@ -28,17 +29,16 @@ apt-get update && apt-get install -y \
     libxtst-dev \
     libxt-dev \
     make \
-    mercurial \
     unzip \
     wget \
     zip
 
-curl -SL https://download.java.net/java/GA/jdk10/10.0.2/19aef61b38124481863b1413dce1855f/13/openjdk-10.0.2_linux-x64_bin.tar.gz | sh -c 'cd /usr/lib/jvm && tar xzf -'
-cp jdk-10.jinfo /usr/lib/jvm/.jdk-10.0.2.jinfo
-grep /usr/lib/jvm /usr/lib/jvm/.jdk-10.0.2.jinfo \
+curl -SL https://download.java.net/java/GA/jdk16.0.2/d4a915d82b4c4fbb9bde534da945d746/7/GPL/openjdk-16.0.2_linux-x64_bin.tar.gz | sh -c 'cd /usr/lib/jvm && tar xzf -'
+cp jdk-16.jinfo /usr/lib/jvm/.jdk-16.0.2.jinfo
+grep /usr/lib/jvm /usr/lib/jvm/.jdk-16.0.2.jinfo \
     | awk '{ print "update-alternatives --install /usr/bin/" $2 " " $2 " " $3 " 2"; }' \
     | bash
-update-java-alternatives -s jdk-10.0.2
+update-java-alternatives -s jdk-16.0.2
 
 # Add ARM files for x11 (not RoboRIO, but doesn't have to be)
 cat arm-x11-files.tar.xz | sh -c "cd /usr/local/arm-frc${YEAR}-linux-gnueabi && tar xJf -"
