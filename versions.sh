@@ -1,5 +1,5 @@
-# The hg revision
-HG_REV=6aa6f6860508
+# The git tag
+GIT_TAG=jdk-11.0.14.1-ga
 # The full version, e.g. "11u28-1"
 VER=`grep Version control | cut -c 10-`
 # The Java major version only, e.g. "11"

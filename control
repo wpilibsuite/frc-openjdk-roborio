@@ -1,10 +1,10 @@
 Package: frc2022-openjdk-11-jre
-Version: 11.0.12u5-1
+Version: 11.0.14-1-ga
 Description: FRC OpenJDK Java Runtime Environment
 Section: devel
 Priority: optional
 Maintainer: WPILib Developers <wpilib@wpi.edu>
 License: GPL
 Architecture: cortexa9-vfpv3
-OE: frc2021-openjdk-11-jre
+OE: frc2022-openjdk-11-jre
 Homepage: https://openjdk.java.net/
