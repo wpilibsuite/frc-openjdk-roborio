@@ -1,5 +1,5 @@
 # The git tag
-GIT_TAG=jdk-17+35
+GIT_TAG=jdk-17.0.3+7
 # The full version, e.g. "11u28-1"
 VER=`grep Version control | cut -c 10-`
 # The Java major version only, e.g. "11"
