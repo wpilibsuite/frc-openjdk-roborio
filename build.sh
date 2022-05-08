@@ -9,9 +9,9 @@ JVM_FEATURES=
 #JVM_VARIANT=minimal1
 #JVM_FEATURES=all-gcs,jvmti,services,vm-structs
 
-wget -nc https://hg.openjdk.java.net/jdk-updates/jdk11u/archive/${HG_REV}.tar.bz2
-tar xjf ${HG_REV}.tar.bz2
-pushd jdk11u-${HG_REV}
+wget -nc https://github.com/openjdk/jdk11u-dev/archive/refs/tags/${GIT_TAG}.tar.gz
+tar xzf ${GIT_TAG}.tar.gz
+pushd jdk11u-dev-${GIT_TAG}
 patch -p1 < ../g1OopClosures.hpp.patch
 patch -p1 < ../UseConcMarkSweepGC.patch
 bash configure \
