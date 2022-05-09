@@ -11,7 +11,7 @@ JVM_FEATURES=
 
 wget -nc https://github.com/openjdk/jdk17u/archive/refs/tags/${GIT_TAG}.tar.gz
 tar xzf ${GIT_TAG}.tar.gz
-pushd jdk-`echo ${GIT_TAG} | sed -e s/+/-/`
+pushd jdk17u-`echo ${GIT_TAG} | sed -e s/+/-/`
 patch -p0 < ../config.guess.patch
 bash configure \
 	--openjdk-target=arm-frc${YEAR}-linux-gnueabi \
