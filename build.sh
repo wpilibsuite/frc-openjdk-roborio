@@ -9,11 +9,10 @@ JVM_FEATURES=
 #JVM_VARIANT=minimal1
 #JVM_FEATURES=all-gcs,jvmti,services,vm-structs
 
-wget -nc https://github.com/openjdk/jdk11u-dev/archive/refs/tags/${GIT_TAG}.tar.gz
+wget -nc https://github.com/openjdk/jdk17u/archive/refs/tags/${GIT_TAG}.tar.gz
 tar xzf ${GIT_TAG}.tar.gz
-pushd jdk11u-dev-${GIT_TAG}
-patch -p1 < ../g1OopClosures.hpp.patch
-patch -p1 < ../UseConcMarkSweepGC.patch
+pushd jdk17u-`echo ${GIT_TAG} | sed -e s/+/-/`
+patch -p0 < ../config.guess.patch
 bash configure \
 	--openjdk-target=arm-frc${YEAR}-linux-gnueabi \
 	--with-abi-profile=arm-vfp-sflt \
@@ -26,8 +25,8 @@ bash configure \
 	--with-version-patch=${JAVA_PATCH} \
 	--with-version-opt=${YEAR}-${VER} \
 	--disable-warnings-as-errors
-make LOG=cmdlines all legacy-jre-image
-pushd build/linux-arm-normal-${JVM_VARIANT}-release/images
+make JOBS=`nproc` LOG=cmdlines all legacy-jre-image
+pushd build/linux-arm-${JVM_VARIANT}-release/images
 tar czf jre_${VER}.tar.gz jre
 chown -R `id -u`:`id -g` jre_${VER}.tar.gz
 cp -a jre_${VER}.tar.gz /artifacts
