@@ -11,7 +11,7 @@ JAVA_PATCH=`grep Version control | cut -c 10- | cut -du -f 2 | cut -d- -f 1`
 # The year, e.g. "2019"
 YEAR=`grep Package control | cut -c 13-16`
 
-UBUNTU=18.04
+UBUNTU=22.04
 DOCKER_IMAGE=wpilib/roborio-cross-ubuntu:${YEAR}-${UBUNTU}
 IPK_NAME=frc${YEAR}-openjdk-17-jre_${VER}_cortexa9-vfpv3.ipk
 
