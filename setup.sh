@@ -20,7 +20,7 @@ apt-get update && apt-get install -y \
     libcups2-dev \
     libfontconfig1-dev \
     libfreetype6-dev \
-    libisl15 \
+    libisl23 \
     libpython2.7 \
     libx11-dev \
     libxext-dev \
@@ -41,21 +41,21 @@ grep /usr/lib/jvm /usr/lib/jvm/.jdk-16.0.2.jinfo \
 update-java-alternatives -s jdk-16.0.2
 
 # Add ARM files for x11 (not RoboRIO, but doesn't have to be)
-cat arm-x11-files.tar.xz | sh -c "cd /usr/local/arm-frc${YEAR}-linux-gnueabi && tar xJf -"
+cat arm-x11-files.tar.xz | sh -c "cd /usr/local/arm-nilrt-linux-gnueabi/sysroot && tar xJf -"
 
 # Add cross libraries
 wget \
-    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/alsa-lib-dev_1.1.5-r0.6_cortexa9-vfpv3.ipk \
-    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/alsa-server_1.1.5-r0.6_cortexa9-vfpv3.ipk \
-    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/cups-dev_2.2.6-r0.14_cortexa9-vfpv3.ipk \
-    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libasound2_1.1.5-r0.6_cortexa9-vfpv3.ipk \
-    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libfontconfig-dev_2.12.6-r0.6_cortexa9-vfpv3.ipk \
-    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libfontconfig1_2.12.6-r0.6_cortexa9-vfpv3.ipk \
-    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libfreetype-dev_2.9-r0.6_cortexa9-vfpv3.ipk \
-    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libfreetype6_2.9-r0.6_cortexa9-vfpv3.ipk \
-    https://download.ni.com/ni-linux-rt/feeds/2019/arm/cortexa9-vfpv3/libz1_1.2.11-r0.71_cortexa9-vfpv3.ipk
+    https://download.ni.com/ni-linux-rt/feeds/academic/2023/arm/extra/cortexa9-vfpv3/alsa-server_1.1.9-r0.0_cortexa9-vfpv3.ipk \
+    https://download.ni.com/ni-linux-rt/feeds/academic/2023/arm/extra/cortexa9-vfpv3/cups-dev_2.2.6-r0.34_cortexa9-vfpv3.ipk \
+    https://download.ni.com/ni-linux-rt/feeds/academic/2023/arm/extra/cortexa9-vfpv3/libasound-dev_1.1.9-r0.0_cortexa9-vfpv3.ipk \
+    https://download.ni.com/ni-linux-rt/feeds/academic/2023/arm/extra/cortexa9-vfpv3/libasound2_1.1.9-r0.0_cortexa9-vfpv3.ipk \
+    https://download.ni.com/ni-linux-rt/feeds/academic/2023/arm/main/cortexa9-vfpv3/libfontconfig-dev_2.12.6-r0.18_cortexa9-vfpv3.ipk \
+    https://download.ni.com/ni-linux-rt/feeds/academic/2023/arm/main/cortexa9-vfpv3/libfontconfig1_2.12.6-r0.18_cortexa9-vfpv3.ipk \
+    https://download.ni.com/ni-linux-rt/feeds/academic/2023/arm/main/cortexa9-vfpv3/libfreetype-dev_2.9-r0.18_cortexa9-vfpv3.ipk \
+    https://download.ni.com/ni-linux-rt/feeds/academic/2023/arm/main/cortexa9-vfpv3/libfreetype6_2.9-r0.18_cortexa9-vfpv3.ipk \
+    https://download.ni.com/ni-linux-rt/feeds/academic/2023/arm/main/cortexa9-vfpv3/libz1_1.2.11-r0.207_cortexa9-vfpv3.ipk
 
 for f in *.ipk; do \
-    ar p $f data.tar.gz | sh -c "cd /usr/local/arm-frc${YEAR}-linux-gnueabi && tar xzf -"; \
+    ar p $f data.tar.xz | sh -c "cd /usr/local/arm-nilrt-linux-gnueabi/sysroot && tar xJf -"; \
 done
 

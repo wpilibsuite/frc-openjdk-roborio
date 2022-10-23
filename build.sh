@@ -20,7 +20,7 @@ bash configure \
 	--with-jvm-features=${JVM_FEATURES} \
 	--with-native-debug-symbols=zipped \
 	--enable-unlimited-crypto \
-	--with-sysroot=/usr/local/arm-frc${YEAR}-linux-gnueabi \
+	--with-sysroot=/usr/local/arm-nilrt-linux-gnueabi/sysroot \
 	--with-version-pre=frc \
 	--with-version-patch=${JAVA_PATCH} \
 	--with-version-opt=${YEAR}-${VER} \
