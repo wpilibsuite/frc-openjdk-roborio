@@ -1,10 +1,10 @@
-Package: frc2023-openjdk-17-jre
-Version: 17.0.5u7-1
+Package: frc2024-openjdk-17-jre
+Version: 17.0.9u7-1
 Description: FRC OpenJDK Java Runtime Environment
 Section: devel
 Priority: optional
 Maintainer: WPILib Developers <wpilib@wpi.edu>
 License: GPL
 Architecture: cortexa9-vfpv3
-OE: frc2023-openjdk-17-jre
+OE: frc2024-openjdk-17-jre
 Homepage: https://openjdk.java.net/
