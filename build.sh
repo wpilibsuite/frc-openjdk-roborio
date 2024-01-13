@@ -9,10 +9,9 @@ JVM_FEATURES=
 #JVM_VARIANT=minimal1
 #JVM_FEATURES=all-gcs,jvmti,services,vm-structs
 
-wget -nc https://github.com/openjdk/jdk17u/archive/refs/tags/${GIT_TAG}.tar.gz
+wget -nc https://github.com/openjdk/jdk21u/archive/refs/tags/${GIT_TAG}.tar.gz
 tar xzf ${GIT_TAG}.tar.gz
-pushd jdk17u-`echo ${GIT_TAG} | sed -e s/+/-/`
-patch -p0 < ../config.guess.patch
+pushd jdk21u-`echo ${GIT_TAG} | sed -e s/+/-/`
 bash configure \
 	--openjdk-target=arm-frc${YEAR}-linux-gnueabi \
 	--with-abi-profile=arm-vfp-sflt \

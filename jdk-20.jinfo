@@ -1,0 +1,32 @@
+name=jdk-20.0.2
+priority=900
+section=main
+
+hl rmid /usr/lib/jvm/jdk-20.0.2/bin/rmid
+hl java /usr/lib/jvm/jdk-20.0.2/bin/java
+hl keytool /usr/lib/jvm/jdk-20.0.2/bin/keytool
+hl rmiregistry /usr/lib/jvm/jdk-20.0.2/bin/rmiregistry
+hl jexec /usr/lib/jvm/jdk-20.0.2/lib/jexec
+jdkhl jlink /usr/lib/jvm/jdk-20.0.2/bin/jlink
+jdkhl jdeps /usr/lib/jvm/jdk-20.0.2/bin/jdeps
+jdkhl jinfo /usr/lib/jvm/jdk-20.0.2/bin/jinfo
+jdkhl jstat /usr/lib/jvm/jdk-20.0.2/bin/jstat
+jdkhl javadoc /usr/lib/jvm/jdk-20.0.2/bin/javadoc
+jdkhl jmod /usr/lib/jvm/jdk-20.0.2/bin/jmod
+jdkhl jhsdb /usr/lib/jvm/jdk-20.0.2/bin/jhsdb
+jdkhl jps /usr/lib/jvm/jdk-20.0.2/bin/jps
+jdkhl jstack /usr/lib/jvm/jdk-20.0.2/bin/jstack
+jdkhl jrunscript /usr/lib/jvm/jdk-20.0.2/bin/jrunscript
+jdkhl javac /usr/lib/jvm/jdk-20.0.2/bin/javac
+jdkhl javap /usr/lib/jvm/jdk-20.0.2/bin/javap
+jdkhl jar /usr/lib/jvm/jdk-20.0.2/bin/jar
+jdkhl jshell /usr/lib/jvm/jdk-20.0.2/bin/jshell
+jdkhl jdeprscan /usr/lib/jvm/jdk-20.0.2/bin/jdeprscan
+jdkhl jimage /usr/lib/jvm/jdk-20.0.2/bin/jimage
+jdkhl jstatd /usr/lib/jvm/jdk-20.0.2/bin/jstatd
+jdkhl jmap /usr/lib/jvm/jdk-20.0.2/bin/jmap
+jdkhl jdb /usr/lib/jvm/jdk-20.0.2/bin/jdb
+jdkhl serialver /usr/lib/jvm/jdk-20.0.2/bin/serialver
+jdkhl jcmd /usr/lib/jvm/jdk-20.0.2/bin/jcmd
+jdkhl jarsigner /usr/lib/jvm/jdk-20.0.2/bin/jarsigner
+jdk jconsole /usr/lib/jvm/jdk-20.0.2/bin/jconsole

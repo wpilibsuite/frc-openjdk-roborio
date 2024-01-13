@@ -33,12 +33,12 @@ apt-get update && apt-get install -y \
     wget \
     zip
 
-curl -SL https://download.java.net/java/GA/jdk16.0.2/d4a915d82b4c4fbb9bde534da945d746/7/GPL/openjdk-16.0.2_linux-x64_bin.tar.gz | sh -c 'cd /usr/lib/jvm && tar xzf -'
-cp jdk-16.jinfo /usr/lib/jvm/.jdk-16.0.2.jinfo
-grep /usr/lib/jvm /usr/lib/jvm/.jdk-16.0.2.jinfo \
+curl -SL https://download.java.net/java/GA/jdk20.0.2/6e380f22cbe7469fa75fb448bd903d8e/9/GPL/openjdk-20.0.2_linux-x64_bin.tar.gz | sh -c 'cd /usr/lib/jvm && tar xzf -'
+cp jdk-20.jinfo /usr/lib/jvm/.jdk-20.0.2.jinfo
+grep /usr/lib/jvm /usr/lib/jvm/.jdk-20.0.2.jinfo \
     | awk '{ print "update-alternatives --install /usr/bin/" $2 " " $2 " " $3 " 2"; }' \
     | bash
-update-java-alternatives -s jdk-16.0.2
+update-java-alternatives -s jdk-20.0.2
 
 # Add ARM files for x11 (not RoboRIO, but doesn't have to be)
 cat arm-x11-files.tar.xz | sh -c "cd /usr/local/arm-nilrt-linux-gnueabi/sysroot && tar xJf -"
