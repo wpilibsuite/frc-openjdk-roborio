@@ -1,0 +1,13 @@
+diff --git a/src/hotspot/os/linux/os_linux.cpp b/src/hotspot/os/linux/os_linux.cpp
+index a14942752b2..a8b6679cfc0 100644
+--- a/src/hotspot/os/linux/os_linux.cpp
++++ b/src/hotspot/os/linux/os_linux.cpp
+@@ -2293,7 +2293,7 @@ void os::Linux::print_process_memory_info(outputStream* st) {
+   // glibc only:
+   // - Print outstanding allocations using mallinfo
+   // - Print glibc tunables
+-#ifdef __GLIBC__
++#if 0
+   size_t total_allocated = 0;
+   size_t free_retained = 0;
+   bool might_have_wrapped = false;
