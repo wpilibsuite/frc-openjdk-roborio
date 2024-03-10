@@ -1,0 +1,13 @@
+diff --git a/src/hotspot/os/posix/os_posix.cpp b/src/hotspot/os/posix/os_posix.cpp
+index fd94f40282c..b6ca6e5d0b6 100644
+--- a/src/hotspot/os/posix/os_posix.cpp
++++ b/src/hotspot/os/posix/os_posix.cpp
+@@ -2081,7 +2081,7 @@ void os::abort(bool dump_core, void* siginfo, const void* context) {
+     LINUX_ONLY(if (DumpPrivateMappingsInCore) ClassLoader::close_jrt_image();)
+     ::abort(); // dump core
+   }
+-  ::_exit(1);
++  os::signal_raise(SIGKILL);
+ }
+ 
+ // Die immediately, no exit hook, no abort hook, no cleanup.
