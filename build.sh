@@ -13,6 +13,7 @@ wget -nc https://github.com/openjdk/jdk17u/archive/refs/tags/${GIT_TAG}.tar.gz
 tar xzf ${GIT_TAG}.tar.gz
 pushd jdk17u-`echo ${GIT_TAG} | sed -e s/+/-/`
 patch -p0 < ../config.guess.patch
+patch -p1 < ../kill_on_abort.patch
 patch -p1 < ../disable_mallinfo.patch
 bash configure \
 	--openjdk-target=arm-frc${YEAR}-linux-gnueabi \
