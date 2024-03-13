@@ -1,0 +1,13 @@
+diff --git a/src/hotspot/share/runtime/globals.hpp b/src/hotspot/share/runtime/globals.hpp
+index e8540f682da..e39ecce8f42 100644
+--- a/src/hotspot/share/runtime/globals.hpp
++++ b/src/hotspot/share/runtime/globals.hpp
+@@ -512,7 +512,7 @@ const intx ObjectAlignmentInBytes = 8;
+   product(bool, CreateCoredumpOnCrash, true,                                \
+           "Create core/mini dump on VM fatal error")                        \
+                                                                             \
+-  product(uint64_t, ErrorLogTimeout, 2 * 60,                                \
++  product(uint64_t, ErrorLogTimeout, 2,                                     \
+           "Timeout, in seconds, to limit the time spent on writing an "     \
+           "error log in case of a crash.")                                  \
+           range(0, (uint64_t)max_jlong/1000)                                \

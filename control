@@ -1,5 +1,5 @@
 Package: frc2024-openjdk-17-jre
-Version: 17.0.9u7-2
+Version: 17.0.9u7-3
 Description: FRC OpenJDK Java Runtime Environment
 Section: devel
 Priority: optional

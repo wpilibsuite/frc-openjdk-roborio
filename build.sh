@@ -15,6 +15,7 @@ pushd jdk17u-`echo ${GIT_TAG} | sed -e s/+/-/`
 patch -p0 < ../config.guess.patch
 patch -p1 < ../kill_on_abort.patch
 patch -p1 < ../disable_mallinfo.patch
+patch -p1 < ../error_log_timeout.patch
 bash configure \
 	--openjdk-target=arm-frc${YEAR}-linux-gnueabi \
 	--with-abi-profile=arm-vfp-sflt \
